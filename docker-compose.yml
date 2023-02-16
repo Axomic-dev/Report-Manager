@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  app:
+    stdin_open: true
+    tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      # args:
+      #   - NPM_TOKEN
+    command:
+      - '/bin/sh'
+      - '-l'
+      - '-c'
+      - 'npm install -D && npm run dev'
+    environment:
+      - NODE_ENV=development
+      - PORT
+      # - NPM_TOKEN
+      # - CRYPTO_SECRET_KEY=CRYPTO_SECRET_KEY
+      # - GOOGLE_APPLICATION_CREDENTIALS=./gcp.json
+      # - FIRESTORE_COLLECTION_PREFIX=DEV_
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./:/src
