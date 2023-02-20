@@ -32,6 +32,7 @@ export interface MessageRecover {
 
 export interface PubsubRequest {
   docId: string;
+  tier: DocumentTier;
   data: Array<{
     request: string;
     username: string;

@@ -1,6 +1,7 @@
 import { CredentialsPlus } from '../interfaces';
 import { hash } from '../tools/utils';
 import { CRYPTO_SECRET_KEY } from '../config';
+import { DocumentTier } from '../boufin';
 
 export default function (user: CredentialsPlus, pass: CredentialsPlus) {
   const requests = ['afc:consolidate', 'cmf:debt', 'sii:tax-folder'];
@@ -9,6 +10,7 @@ export default function (user: CredentialsPlus, pass: CredentialsPlus) {
   const password = pass.unique;
   return {
     docId: hash(username + today, CRYPTO_SECRET_KEY),
+    tier: DocumentTier.PLUS,
     data: requests.map((request) => ({ request, username, password }))
   };
 }
