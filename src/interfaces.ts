@@ -30,12 +30,14 @@ export interface MessageRecover {
   reportId?: string;
 }
 
+export interface BoufinRequest {
+  request: string;
+  username: string;
+  password: string;
+}
+
 export interface PubsubRequest {
   docId: string;
   tier: DocumentTier;
-  data: Array<{
-    request: string;
-    username: string;
-    password: string;
-  }>;
+  jobs: Array<BoufinRequest>;
 }
