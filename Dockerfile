@@ -20,7 +20,7 @@ WORKDIR /src
 COPY --from=builder /builder/package* ./
 COPY .npmrc .npmrc
 RUN npm install
-COPY --from=builder /builder/built ./built
+COPY --from=builder /builder/dist ./dist
 RUN rm -f .npmrc
 
 CMD npm run start

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "dev": "node ./dist/index.js",
+    "start": "node ./dist/index.js",
     "check": "npm run format:check && npm run lint:check",
     "up": "npm run format && npm run lint",
     "test": "NODE_ENV=test jest --detectOpenHandles",
