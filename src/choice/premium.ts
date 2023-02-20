@@ -11,6 +11,6 @@ export default function (user: CredentialsPremium, pass: CredentialsPremium) {
   return {
     docId: hash(username + today, CRYPTO_SECRET_KEY),
     tier: DocumentTier.PREMIUM,
-    data: requests.map((request) => ({ request, username, password }))
+    jobs: requests.map((request) => ({ request, username, password }))
   };
 }
