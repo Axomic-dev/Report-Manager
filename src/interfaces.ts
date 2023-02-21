@@ -31,7 +31,7 @@ export interface MessageRecover {
 }
 
 export interface BoufinRequest {
-  request: string;
+  action: string;
   username: string;
   password: string;
 }
