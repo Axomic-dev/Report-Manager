@@ -10,7 +10,7 @@ import premiumChoice from './choice/premium';
 import { publish } from './pubsub';
 import { createDocument, getDocument } from './firestore';
 
-const app = express();
+export const app = express();
 
 app.use(bodyParser.json());
 app.post('/create', async (req: Req, res: Res) => {
@@ -31,7 +31,7 @@ app.post('/create', async (req: Req, res: Res) => {
     await createDocument(response.docId);
     response.taskStatusCode = 202;
     response.taskStatus = TaskStatus.QUEUED;
-    res.status(200).send(response);
+    res.status(202).send(response);
   } catch (error) {
     console.error(error);
     res.status(400).send(response);
@@ -51,4 +51,4 @@ app.get('/report/:docId([0-9a-fA-F]{64})', async (req: Req, res: Res) => {
     res.status(400).send(response);
   }
 });
-app.listen(PORT);
+export const server = app.listen(PORT);

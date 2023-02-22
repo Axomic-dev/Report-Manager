@@ -5,6 +5,6 @@ const config: Config.InitialOptions = {
   verbose: true,
   preset: 'ts-jest',
   testEnvironment: 'node',
-  setupFiles: ['<rootDir>/tests/testEnv.ts']
+  setupFiles: ['<rootDir>/test/testEnv.ts']
 };
 export default config;
