@@ -8,7 +8,7 @@ import standardChoice from './choice/standard';
 import plusChoice from './choice/plus';
 import premiumChoice from './choice/premium';
 import { publish } from './pubsub';
-import { getDocument } from './firestore';
+import { createDocument, getDocument } from './firestore';
 
 const app = express();
 
@@ -28,6 +28,7 @@ app.post('/create', async (req: Req, res: Res) => {
       throw new Error('Document tier is not available, may not be implemented.');
     }
     response.docId = await publish(result);
+    await createDocument(response.docId);
     response.taskStatusCode = 202;
     response.taskStatus = TaskStatus.QUEUED;
     res.status(200).send(response);
