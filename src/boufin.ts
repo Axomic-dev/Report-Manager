@@ -4,6 +4,12 @@ export const DocumentTier = {
   PREMIUM: 'premium'
 };
 
+export const TaskStatus = {
+  FAILED: 'failed',
+  COMPLETED: 'completed',
+  QUEUED: 'queued'
+};
+
 export const EntityId = {
   BCI: 'banco-bci',
   CHILE: 'banco-chile',
@@ -49,5 +55,6 @@ export const Action = {
 };
 
 export type DocumentTier = (typeof DocumentTier)[keyof typeof DocumentTier];
+export type TaskStatus = (typeof TaskStatus)[keyof typeof TaskStatus];
 export type EntityId = (typeof EntityId)[keyof typeof EntityId];
 export type Action = (typeof Action)[keyof typeof Action];

@@ -11,7 +11,12 @@ export async function getDocument(docId: string) {
   const docRef = firestore.collection(FIRESTORE_MANAGER_COLLECTION_NAME).doc(docId);
   return await docRef.get().then((doc) => {
     if (doc.exists) {
-      return doc.data() as AnyObject;
+      const data = doc.data() as AnyObject;
+      if (Object.keys(data).length > 0) {
+        return { completed: true, report: data };
+      } else {
+        return { completed: false, report: {} };
+      }
     }
     throw new Error('[Firestore] The document has not been created yet.');
   });
