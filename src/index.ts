@@ -31,7 +31,7 @@ app.post('/create', async (req: Req, res: Res) => {
     await createDocument(response.docId);
     response.taskStatusCode = 202;
     response.taskStatus = TaskStatus.QUEUED;
-    res.status(202).send(response);
+    res.status(200).send(response);
   } catch (error) {
     console.error(error);
     res.status(400).send(response);
@@ -45,7 +45,7 @@ app.get('/report/:docId([0-9a-fA-F]{64})', async (req: Req, res: Res) => {
     response.taskStatusCode = completed ? 200 : 202;
     response.taskStatus = completed ? TaskStatus.COMPLETED : TaskStatus.QUEUED;
     response.results = report;
-    res.status(response.taskStatusCode).send(response);
+    res.status(200).send(response);
   } catch (error) {
     console.error(error);
     res.status(400).send(response);
