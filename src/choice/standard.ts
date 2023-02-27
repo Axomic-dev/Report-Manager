@@ -1,13 +1,13 @@
 import { Credentials } from '../interfaces';
-import { hash } from '../tools/utils';
-import { CRYPTO_SECRET_KEY } from '../config';
+import { decrypt, hash } from '../tools/utils';
+import { CRYPTO_SECRET_KEY, PRIVATE_KEY } from '../config';
 import { DocumentTier } from '../boufin';
 
 export default function (user: Credentials, pass: Credentials) {
   const requests = ['afc:consolidate', 'cmf:debt', 'sii:tax-folder'];
   const today = new Date().toUTCString();
-  const username = user.unique;
-  const password = pass.unique;
+  const username = decrypt(user.unique, PRIVATE_KEY);
+  const password = decrypt(pass.unique, PRIVATE_KEY);
   return {
     docId: hash(username + today, CRYPTO_SECRET_KEY),
     tier: DocumentTier.STANDARD,
